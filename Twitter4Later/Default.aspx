@@ -18,14 +18,14 @@
                 Text="Request" />
         </p>
     <div id="nowLogged" runat="server"></div>
-    <h4>Clic de next button to show some information about the authenticated user</h4>
+    <h4>Clic de next button to show some information about the user</h4>
         <asp:TextBox ID="txtUser" runat="server"></asp:TextBox>
         <asp:Button ID="Button2" runat="server" Text="See information" 
             onclick="Button2_Click" />
             <div id="infoUser" runat="server"></div>
 
     <br />
-    <h4>Favourited tweets</h4>
+    <h4>Favorited tweets</h4>
     <br />
     <h4>Update your status</h4>
         <asp:TextBox ID="txtStatus" runat="server"></asp:TextBox>

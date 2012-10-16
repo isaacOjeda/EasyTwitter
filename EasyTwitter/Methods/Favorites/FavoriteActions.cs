@@ -88,7 +88,7 @@ namespace EasyTwitter
                         {
                             Id = (decimal)tweets["id"],
                             Text = (string)tweets["text"],
-                            CreatedAt=(DateTime)tweets["created_at"],
+                            CreatedAt=(string)tweets["created_at"],
                             User = new TwitterUser
                             {
                                 Id = (int)tweets["user"]["id"],
