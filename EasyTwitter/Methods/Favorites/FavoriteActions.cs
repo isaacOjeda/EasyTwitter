@@ -27,6 +27,7 @@ using EasyTwitter.Entities;
 
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace EasyTwitter
 {
@@ -88,7 +89,7 @@ namespace EasyTwitter
                         {
                             Id = (decimal)tweets["id"],
                             Text = (string)tweets["text"],
-                            CreatedAt=(string)tweets["created_at"],
+                            CreatedAt=DateTime.ParseExact(tweets["created_at"].ToString(),"ddd MMM dd HH:mm:ss K yyyy",CultureInfo.InvariantCulture),
                             User = new TwitterUser
                             {
                                 Id = (int)tweets["user"]["id"],
