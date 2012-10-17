@@ -74,6 +74,9 @@ namespace Twitter4Later
             #region Favourited
             FavoriteActions favourites = new FavoriteActions(tokens);
             TwitterResponse<List<Tweet>> response= favourites.GetTweets();
+
+            gridFav.DataSource = response.ObjectResponse;
+            gridFav.DataBind();
             #endregion
         }
 
@@ -85,6 +88,17 @@ namespace Twitter4Later
 
             TwitterStatus status=tweet.UpdateStatus(txtStatus.Text);
             
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            OAuthTokens tokens = (OAuthTokens)Session["OAuthTokens"];
+            FavoriteActions favorite = new FavoriteActions(tokens);
+            TwitterStatus status = favorite.DestroyFavorite(txtIdTweet.Text);
+            if (TwitterStatus.Success == status)
+            {
+                //success
+            }
         }
 
     }
