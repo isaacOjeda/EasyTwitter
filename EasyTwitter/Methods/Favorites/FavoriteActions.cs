@@ -69,6 +69,14 @@ namespace EasyTwitter
             return this.GetTweets(50);
         }
 
+        public TwitterStatus DestroyFavorite(string tweetId)
+        {
+            this.Method = String.Format("destroy.json");
+            this.AdditionalParameters.Add("id", tweetId);
+            TwitterResponse<string> twitterResponse = this.BeginRequest(HTTPVerb.POST);
+            return twitterResponse.Status;
+        }
+
         #region FavoriteActions Helpers
 
         /// <summary>

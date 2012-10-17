@@ -51,7 +51,7 @@ namespace EasyTwitter
         /// <summary>
         /// 
         /// </summary>
-        protected Dictionary<string, string> AdditionalParameters { get; set; }
+        protected Dictionary<string, object> AdditionalParameters { get; set; }
 
         /// <summary>
         /// 
@@ -60,7 +60,7 @@ namespace EasyTwitter
         public MethodsCore(string baseUri)
         {
             this.BaseUri = baseUri;
-            this.AdditionalParameters = new Dictionary<string, string>();
+            this.AdditionalParameters = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace EasyTwitter
         /// <param name="overrideVerb"></param>
         /// <returns></returns>
         protected abstract TwitterResponse<string> BeginRequest(HTTPVerb overrideVerb = HTTPVerb.GET);
-
+        
         /// <summary>
         /// 
         /// </summary>

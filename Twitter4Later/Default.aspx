@@ -26,10 +26,15 @@
 
     <br />
     <h4>Favorited tweets</h4>
+        <asp:GridView ID="gridFav" runat="server">
+        </asp:GridView>
     <br />
     <h4>Update your status</h4>
         <asp:TextBox ID="txtStatus" runat="server"></asp:TextBox>
         <asp:Button ID="Button3" runat="server" Text="Button" onclick="Button3_Click" />
+        <h4>Destroy a favorited status</h4>
+        <asp:TextBox ID="txtIdTweet" runat="server"></asp:TextBox>
+        <asp:Button ID="Button4" runat="server" Text="Destroy it" OnClick="Button4_Click" />
     </div>
     </form>
 </body>
