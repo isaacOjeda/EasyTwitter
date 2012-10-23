@@ -1,19 +1,12 @@
-/*
- *  
- *  
- *  Copyright 2012 Isaac Ojeda <isaacoq(at)gmail(dot)com>
- * 
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- * 
- *  This progam is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- * 
- *  You should have received a copy of the GNU General Public License
- *  along with this program.
- * 
- */
+<h1>Easy Twitter</h1>
+<p>EasyTwitter it's a simple wrapper library for the new Web API of Twitter v1.1</p>
+<p>&nbsp;EasyTwitter is under &nbsp;development. At this time it has basic operations like OAuth authentication and simple tasks with tweets and user info.</p>
+<h2>EasyTwitter configuration file</h2>
+<p>With EasyTwitter you have an easy way to configure your application to use your twitter app</p>
+<p><img src="https://pbs.twimg.com/media/A5WMVYBCUAET7H0.png:large" alt="" width="747" height="375" /><br /> <br /> <br /></p>
+<h2>Requesting OAuth tokens</h2>
+<p><a href="http://imageshack.us/photo/my-images/688/10738422.png/"><img style="padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0;" title="image" src="http://imageshack.us/scaled/landing/688/10738422.png" border="0" alt="image" width="510" height="82" /></a></p>
+<h3>Callback</h3>
+<p><a href="http://imageshack.us/photo/my-images/268/35721948.png/"><img style="padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0;" title="image" src="http://imageshack.us/scaled/landing/268/35721948.png" border="0" alt="image" width="496" height="318" /></a></p>
+<h2>Updating your status</h2>
+<p><a href="http://imageshack.us/photo/my-images/837/28226904.png/"><img style="padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0;" title="image" src="http://imageshack.us/scaled/landing/837/28226904.png" border="0" alt="image" width="506" height="207" /></a></p>
