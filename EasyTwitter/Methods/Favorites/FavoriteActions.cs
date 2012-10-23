@@ -81,7 +81,7 @@ namespace EasyTwitter
         /// <summary>
         /// Get 'count' number of  favorited tweets of the logged user
         /// </summary>
-        /// <param name="count">Favorited tweets number to display</param>
+        /// <param name="count">Number of favorited tweets to display</param>
         /// <returns></returns>
         public TwitterResponse<List<Tweet>> GetTweets(int count)
         {
@@ -96,6 +96,17 @@ namespace EasyTwitter
         public TwitterResponse<List<Tweet>> GetTweets(decimal since_id)
         {
             return this.GetTweets(50, since_id,null);
+        }
+
+        /// <summary>
+        /// Get 'count'number of favorited tweets less than max_id tweet
+        /// </summary>
+        /// <param name="count">Number of favorited tweets to display</param>
+        /// <param name="max_id"></param>
+        /// <returns></returns>
+        public TwitterResponse<List<Tweet>> GetTweets(int count,decimal max_id)
+        {
+            return this.GetTweets(count, null, max_id);
         }
 
         /// <summary>
