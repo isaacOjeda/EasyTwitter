@@ -47,13 +47,22 @@ namespace EasyTwitter
         }
 
         /// <summary>
-        /// GetTweets the 'count' favorited tweets of the logged user
+        /// Main GetTweets function see more at
         /// Documentation: https://dev.twitter.com/docs/api/1.1/get/favorites/list
         /// </summary>
+        /// <param name="count"></param>
+        /// <param name="since_id"></param>
         /// <returns></returns>
-        public TwitterResponse<List<Tweet>> GetTweets(int count)
+        private TwitterResponse<List<Tweet>> GetTweets(int? count,decimal? since_id,decimal? max_id)
         {
-            this.Method = String.Format("list.json?count={0}",count);
+            this.Method = "list.json?";
+            
+            if(count.HasValue)
+                this.Method = this.Method + String.Format("count={0}&", count.Value);
+            if (since_id.HasValue)
+                this.Method = this.Method + String.Format("since_id={0}&", since_id.Value);
+            if (max_id.HasValue)
+                this.Method = this.Method + String.Format("max_id={0}&", max_id.Value);
 
             TwitterResponse<string> twitterResponse = this.BeginRequest();
 
@@ -61,14 +70,50 @@ namespace EasyTwitter
         }
 
         /// <summary>
-        /// GetTweets the first 50 favorited tweets of the logged user
+        /// Get the first 50 favorited tweets of the logged user
         /// </summary>
         /// <returns></returns>
         public TwitterResponse<List<Tweet>> GetTweets()
         {
-            return this.GetTweets(50);
+            return this.GetTweets(50,null,null);
         }
 
+        /// <summary>
+        /// Get 'count' number of  favorited tweets of the logged user
+        /// </summary>
+        /// <param name="count">Favorited tweets number to display</param>
+        /// <returns></returns>
+        public TwitterResponse<List<Tweet>> GetTweets(int count)
+        {
+            return this.GetTweets(count, null, null);
+        }
+        /// <summary>
+        /// Get the first 50 favorited tweets of the logged user since
+        /// the since_id entered
+        /// </summary>
+        /// <param name="since_id"></param>
+        /// <returns></returns>
+        public TwitterResponse<List<Tweet>> GetTweets(decimal since_id)
+        {
+            return this.GetTweets(50, since_id,null);
+        }
+
+        /// <summary>
+        /// Get tweets between since_id and max_id
+        /// </summary>
+        /// <param name="since_id"></param>
+        /// <param name="max_id"></param>
+        /// <returns></returns>
+        public TwitterResponse<List<Tweet>> GetTweets(decimal since_id,decimal max_id)
+        {
+            return this.GetTweets(null,since_id,max_id);
+        }
+
+        /// <summary>
+        /// Un-favorite a favorited tweet
+        /// </summary>
+        /// <param name="tweetId">Tweet id to un-favorite</param>
+        /// <returns></returns>
         public TwitterStatus DestroyFavorite(string tweetId)
         {
             this.Method = String.Format("destroy.json");
@@ -77,6 +122,8 @@ namespace EasyTwitter
             return twitterResponse.Status;
         }
 
+        
+        
         #region FavoriteActions Helpers
 
         /// <summary>
