@@ -40,11 +40,11 @@ namespace EasyTwitter.Config
         }
 
         [ConfigurationProperty("callbackUri", IsRequired = true)]
-        public Uri CallBackUri
+        public string CallBackUri
         {
             get
             {
-                return (Uri) this["callbackUri"];
+                return (string) this["callbackUri"];
             }
             set
             {

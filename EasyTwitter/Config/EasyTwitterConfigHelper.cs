@@ -7,7 +7,7 @@ namespace EasyTwitter.Config
 {
     public static class EasyTwitterConfigHelper
     {
-        public static Uri GetCallBackUrl
+        public static string GetCallBackUrl
         {
             get
             {

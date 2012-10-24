@@ -54,7 +54,7 @@ namespace EasyTwitter
         /// <returns></returns>
         public static OAuthTokenResponse GetRequestToken()
         {
-            string callbackAddress = Config.EasyTwitterConfigHelper.GetCallBackUrl.ToString();
+            string callbackAddress = Config.EasyTwitterConfigHelper.GetCallBackUrl;
             WebRequestBuilder builder = new WebRequestBuilder(
                 new Uri("https://api.twitter.com/oauth/request_token"),
                 HTTPVerb.POST,
@@ -89,20 +89,33 @@ namespace EasyTwitter
         /// <summary>
         /// Gets the access token.
         /// </summary>
-        /// <param name="consumerKey">The consumer key.</param>
-        /// <param name="consumerSecret">The consumer secret.</param>
-        /// <param name="requestToken">The request token.</param>
-        /// <param name="verifier">The pin number or verifier string.</param>
         /// <returns>
         /// An <see cref="OAuthTokenResponse"/> class containing access token information.
         /// </returns>
+        /// 
         public static OAuthTokenResponse GetAccessToken()
         {
-            string requestToken=System.Web.HttpContext.Current.Request.QueryString["oauth_token"] as string;
-            string verifier = System.Web.HttpContext.Current.Request.QueryString["oauth_verifier"] as string;
+            return GetAccessToken(String.Empty, String.Empty);
+        }
+        /// <summary>
+        /// Gets the access token.
+        /// </summary>
+        /// <param name="requestToken">The request token.</param>
+        /// <param name="verifier">The pin number or verifier string.</param>
+        /// <returns></returns>
+        public static OAuthTokenResponse GetAccessToken(string requestToken, string verifier)
+        {
+            string denied = String.Empty;
+            if (String.IsNullOrEmpty(requestToken) && String.IsNullOrEmpty(verifier))
+            {
+                //this is only for web...
+                requestToken = System.Web.HttpContext.Current.Request.QueryString["oauth_token"] as string;
+                verifier = System.Web.HttpContext.Current.Request.QueryString["oauth_verifier"] as string;
+                denied = System.Web.HttpContext.Current.Request.QueryString["denied"] as string ?? String.Empty;
+            }
 
-            string denied = System.Web.HttpContext.Current.Request.QueryString["denied"] as string ?? String.Empty;
-
+            if (String.IsNullOrEmpty(requestToken) || String.IsNullOrEmpty(verifier))
+                throw new ArgumentNullException("You need to prove the request token and the verifier code");
 
             WebRequestBuilder builder = new WebRequestBuilder(
                 new Uri("https://api.twitter.com/oauth/access_token"),
