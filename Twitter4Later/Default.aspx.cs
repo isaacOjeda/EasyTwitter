@@ -74,9 +74,20 @@ namespace Twitter4Later
             #region Favourited
             FavoriteActions favourites = new FavoriteActions(tokens);
             TwitterResponse<List<Tweet>> response= favourites.GetTweets();
-
+            
             gridFav.DataSource = response.ObjectResponse;
             gridFav.DataBind();
+            #endregion
+
+            #region homeTimeline
+            TimelineActions actionsTimeline = new TimelineActions(tokens);
+            TwitterResponse<List<Tweet>> responseTimeline= actionsTimeline.GetHomeTimeline();
+            //max
+            responseTimeline = actionsTimeline.GetHomeTimeline(10, 264858936895754240);
+            //since
+            responseTimeline = actionsTimeline.GetHomeTimeline(264858936895754240);
+            
+
             #endregion
         }
 

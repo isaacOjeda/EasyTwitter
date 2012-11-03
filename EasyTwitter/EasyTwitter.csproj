@@ -52,9 +52,12 @@
     <Compile Include="Entities\TweetEntities.cs" />
     <Compile Include="Entities\EntitieUrl.cs" />
     <Compile Include="Entities\TwitterUser.cs" />
+    <Compile Include="Helpers\TweetParseHelper.cs" />
     <Compile Include="Methods\Favorites\FavoriteActions.cs" />
     <Compile Include="Methods\MethodsCore.cs" />
     <Compile Include="Methods\Favorites\FavoritesActionsCore.cs" />
+    <Compile Include="Methods\Timeline\TimelineActions.cs" />
+    <Compile Include="Methods\Timeline\TimelineActionsCore.cs" />
     <Compile Include="Methods\Tweet\TweetActions.cs" />
     <Compile Include="Methods\Tweet\TweetActionsCore.cs" />
     <Compile Include="Methods\TwitterResponse.cs" />
