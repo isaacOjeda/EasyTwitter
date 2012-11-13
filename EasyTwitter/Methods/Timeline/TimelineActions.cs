@@ -51,12 +51,12 @@ namespace EasyTwitter
             this.Method = "home_timeline.json?";
 
             if (count.HasValue)
-                this.Method = this.Method + String.Format("count={0}&", count.Value);
+                this.AdditionalParameters.Add("count", count.Value.ToString());                
             if (since_id.HasValue)
-                this.Method = this.Method + String.Format("since_id={0}&", since_id.Value);
+                this.AdditionalParameters.Add("since_id", since_id.Value.ToString());                
             if (max_id.HasValue)
-                this.Method = this.Method + String.Format("max_id={0}&", max_id.Value);
-
+                this.AdditionalParameters.Add("max_id", max_id.Value.ToString());                
+            
             TwitterResponse<string> twitterResponse= this.BeginRequest();
 
             return Helpers.TweetParseHelper.ParseTweetsCollection(twitterResponse);

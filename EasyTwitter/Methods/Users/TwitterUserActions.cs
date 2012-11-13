@@ -58,7 +58,93 @@ namespace EasyTwitter
 
         }
 
+        /// <summary>
+        /// Search Twitter users
+        /// Documentation: https://dev.twitter.com/docs/api/1.1/get/users/search
+        /// </summary>
+        /// <param name="hint">Text to search</param>
+        /// <param name="page">Number of page to display</param>
+        /// <param name="count">Number of element to display in page</param>
+        /// <returns>TwitterResponse with a list of twitter users object</returns>
+        public TwitterResponse<List<TwitterUser>> Search(string hint,int? page,int? count)
+        {
+            if (String.IsNullOrEmpty(hint))
+                throw new ApplicationException("Hint cannot be null or empty");            
+
+            //Method name 
+            this.Method = "search.json";
+            //Parameters
+            this.AdditionalParameters.Add("q", hint);
+            if(page.HasValue)
+                this.AdditionalParameters.Add("page",page.Value.ToString());
+            if (count.HasValue)
+                this.AdditionalParameters.Add("count", count.Value.ToString());
+            //begin request
+            TwitterResponse<string> twitterResponse = this.BeginRequest();
+
+            return ParseListUsers(twitterResponse);
+        }
+
+        /// <summary>
+        /// Search twitter users
+        /// </summary>
+        /// <param name="hint">Text to search</param>
+        /// <returns>TwitterResponse with a list of twitter users object</returns>
+        public TwitterResponse<List<TwitterUser>> Search(string hint)
+        {
+            return Search(hint, null, null);
+        }
+
+
+
         #region TwitterUser Helpers
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="twitterResponse"></param>
+        /// <returns></returns>
+        private TwitterResponse<List<TwitterUser>> ParseListUsers(TwitterResponse<string> twitterResponse)
+        {
+            if (twitterResponse.Status == TwitterStatus.Success)
+            {
+                JArray json = JArray.Parse(twitterResponse.ObjectResponse);
+
+                List<TwitterUser> usersSearched =
+                    (
+                        from  user in json.AsEnumerable()
+                        select new TwitterUser
+                        {
+                            Name = (string)user["name"],
+                            Id = (int)user["id"],
+                            Location = (string)user["location"],
+                            Description = (string)user["description"],
+                            ScreenName = (string)user["screen_name"],
+                            FavouritesCount = (int)user["favourites_count"],
+                            FollowersCount = (int)user["followers_count"],
+                            ProfileImageUrl = (string)user["profile_image_url"]                            
+                        }
+                    ).ToList<TwitterUser>();
+
+                return new TwitterResponse<List<TwitterUser>>
+                {
+                    Status=TwitterStatus.Success,
+                    ObjectResponse=usersSearched
+                };
+            }
+            else
+                return new TwitterResponse<List<TwitterUser>>
+                {
+                    Status = TwitterStatus.GeneralError,
+                    ObjectResponse = null
+                };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="twitterResponse"></param>
+        /// <returns></returns>
         private TwitterResponse<TwitterUser> ParseUserInfo(TwitterResponse<string> twitterResponse)
         {
             if (twitterResponse.Status == TwitterStatus.Success)
@@ -90,6 +176,7 @@ namespace EasyTwitter
                     ObjectResponse = null
                 };
         }
+        
         #endregion
 
 

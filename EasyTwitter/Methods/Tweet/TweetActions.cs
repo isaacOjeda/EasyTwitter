@@ -41,10 +41,11 @@ namespace EasyTwitter
         }
 
         /// <summary>
+        /// Update your status
         /// Documentation : https://dev.twitter.com/docs/api/1.1/post/statuses/update
         /// </summary>
-        /// <param name="status"></param>
-        /// <returns></returns>
+        /// <param name="status">Status String</param>
+        /// <returns>TwitterStatus response</returns>
         public TwitterStatus UpdateStatus(string status)
         {
             this.Method="update.json";
@@ -60,16 +61,6 @@ namespace EasyTwitter
             {
                 return TwitterStatus.GeneralError;
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="numberOfTweets"></param>
-        /// <returns></returns>
-        public TwitterResponse<Tweet> GetRetweets(int numberOfTweets)
-        {
-            return null;
         }
     }
 }

@@ -94,7 +94,8 @@ namespace EasyTwitter
                 {
                     foreach (var item in this.AdditionalParameters)
                         builder.Parameters.Add(item.Key, item.Value);
-                    builder.Multipart = true;
+                    if(this.Verb==HTTPVerb.POST)
+                        builder.Multipart = true;
                 }
 
                 HttpWebResponse webResponse = builder.ExecuteRequest();

@@ -52,17 +52,18 @@ namespace EasyTwitter
         /// </summary>
         /// <param name="count"></param>
         /// <param name="since_id"></param>
+        /// <param name="max_id"></param>
         /// <returns></returns>
         private TwitterResponse<List<Tweet>> GetTweets(int? count,decimal? since_id,decimal? max_id)
         {
-            this.Method = "list.json?";
-            
-            if(count.HasValue)
-                this.Method = this.Method + String.Format("count={0}&", count.Value);
+            this.Method = "list.json";
+
+            if (count.HasValue)
+                this.AdditionalParameters.Add("count", count.Value.ToString());
             if (since_id.HasValue)
-                this.Method = this.Method + String.Format("since_id={0}&", since_id.Value);
+                this.AdditionalParameters.Add("since_id", since_id.Value.ToString());
             if (max_id.HasValue)
-                this.Method = this.Method + String.Format("max_id={0}&", max_id.Value);
+                this.AdditionalParameters.Add("max_id", max_id.Value.ToString());
 
             TwitterResponse<string> twitterResponse = this.BeginRequest();
 
@@ -122,6 +123,7 @@ namespace EasyTwitter
 
         /// <summary>
         /// Un-favorite a favorited tweet
+        /// Documentation: https://dev.twitter.com/docs/api/1.1/post/favorites/destroy
         /// </summary>
         /// <param name="tweetId">Tweet id to un-favorite</param>
         /// <returns></returns>
@@ -132,11 +134,5 @@ namespace EasyTwitter
             TwitterResponse<string> twitterResponse = this.BeginRequest(HTTPVerb.POST);
             return twitterResponse.Status;
         }
-
-        
-        
-        #region FavoriteActions Helpers
-
-        #endregion
     }
 }

@@ -50,43 +50,48 @@ namespace Twitter4Later
 
             #region TwitterUser
             TwitterUserActions twitterObject = new TwitterUserActions(tokens);
-            TwitterResponse<TwitterUser> twitterResponse = twitterObject.GetUserInfo(txtUser.Text);
+            //TwitterResponse<TwitterUser> twitterResponse = twitterObject.GetUserInfo(txtUser.Text);
 
-            if (twitterResponse.Status == TwitterStatus.Success)
-            {
-                TwitterUser user = twitterResponse.ObjectResponse;
+            //if (twitterResponse.Status == TwitterStatus.Success)
+            //{
+            //    TwitterUser user = twitterResponse.ObjectResponse;
 
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("<h3>{0}</h3>", user.Name)
-                    .AppendFormat("</br><img src=\"{0}\" /> @{1}", user.ProfileImageUrl, user.ScreenName)
-                    .AppendFormat("</br>Description:{0}", user.Description)
-                    .AppendFormat("</br>Location: {0}", user.Location)
-                    .AppendFormat("</br>Followers:{0} Favorited tweets:{1}", user.FollowersCount, user.FavouritesCount);
+            //    StringBuilder sb = new StringBuilder();
+            //    sb.AppendFormat("<h3>{0}</h3>", user.Name)
+            //        .AppendFormat("</br><img src=\"{0}\" /> @{1}", user.ProfileImageUrl, user.ScreenName)
+            //        .AppendFormat("</br>Description:{0}", user.Description)
+            //        .AppendFormat("</br>Location: {0}", user.Location)
+            //        .AppendFormat("</br>Followers:{0} Favorited tweets:{1}", user.FollowersCount, user.FavouritesCount);
 
-                infoUser.InnerHtml = sb.ToString();
-            }
-            else
-            {
-                infoUser.InnerText = "No se encontro el usuario o ocurrio otra cosa";
-            }
+            //    infoUser.InnerHtml = sb.ToString();
+            //}
+            //else
+            //{
+            //    infoUser.InnerText = "No se encontro el usuario o ocurrio otra cosa";
+            //}
             #endregion
 
             #region Favourited
-            FavoriteActions favourites = new FavoriteActions(tokens);
-            TwitterResponse<List<Tweet>> response= favourites.GetTweets();
-            
-            gridFav.DataSource = response.ObjectResponse;
-            gridFav.DataBind();
+            //FavoriteActions favourites = new FavoriteActions(tokens);
+            //TwitterResponse<List<Tweet>> response = favourites.GetTweets(268126545946759169);
+
+            //gridFav.DataSource = response.ObjectResponse;
+            //gridFav.DataBind();
             #endregion
 
             #region homeTimeline
             TimelineActions actionsTimeline = new TimelineActions(tokens);
-            TwitterResponse<List<Tweet>> responseTimeline= actionsTimeline.GetHomeTimeline();
+            //TwitterResponse<List<Tweet>> responseTimeline = actionsTimeline.GetHomeTimeline();
             //max
-            responseTimeline = actionsTimeline.GetHomeTimeline(10, 264858936895754240);
+            //TwitterResponse<List<Tweet>> responseTimeline = actionsTimeline.GetHomeTimeline(5, 268480111941124097);
             //since
-            responseTimeline = actionsTimeline.GetHomeTimeline(264858936895754240);
+            TwitterResponse<List<Tweet>> responseTimeline = actionsTimeline.GetHomeTimeline(268480111941124097);
             
+
+            #endregion
+
+            #region Search user
+            //TwitterResponse<List<TwitterUser>> usersss= twitterObject.Search(txtUser.Text, 1,10);
 
             #endregion
         }
