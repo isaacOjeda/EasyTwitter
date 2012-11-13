@@ -26,6 +26,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using EasyTwitter.Entities;
+using EasyTwitter.Core;
 
 namespace EasyTwitter
 {

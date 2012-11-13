@@ -23,11 +23,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using EasyTwitter.Entities;
-
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Globalization;
+using EasyTwitter.Entities;
+using EasyTwitter.Core;
 
 namespace EasyTwitter
 {

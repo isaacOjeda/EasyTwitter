@@ -25,7 +25,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 
-namespace EasyTwitter
+namespace EasyTwitter.Core
 {
     public class TwitterUserActionsCore : MethodsCore
     {
