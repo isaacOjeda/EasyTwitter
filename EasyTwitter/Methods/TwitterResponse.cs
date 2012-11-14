@@ -29,22 +29,48 @@ namespace EasyTwitter
 
     public enum TwitterStatus
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        NotFound,
-        /// <summary>
-        /// 
-        /// </summary>
-        Success,
-        /// <summary>
-        /// 
-        /// </summary>
-        GeneralError,
-        /// <summary>
-        /// 
-        /// </summary>
-        Unauthorized
+       /// <summary>
+        /// Success!
+       /// </summary>
+       Success=0,
+       /// <summary>
+       /// The request was invalid. 
+       /// In API v1.1, a request without authentication is considered invalid and you will get this response.
+       /// </summary>
+       BadRequest = 2,
+       /// <summary>
+       /// The URI requested is invalid or the resource requested, such as a user, does not exists. 
+       /// Also returned when the requested format is not supported by the requested method.
+       /// </summary>
+       FileNotFound = 1,
+       /// <summary>
+       /// Authentication credentials were missing or incorrect.
+       /// </summary>
+       Unauthorized=3,
+       /// <summary>
+       /// Returned by the Search API when an invalid format is specified in the request.
+       /// </summary>
+       NotAcceptable=4,
+       /// <summary>
+       /// 
+       /// </summary>
+       RateLimited=5,
+       /// <summary>
+       /// 
+       /// </summary>
+       TwitterIsDown=6,
+       /// <summary>
+       /// 
+       /// </summary>
+       TwitterIsOverloaded=7,
+       /// <summary>
+       /// 
+       /// </summary>
+       ConnectionFailure=8,                
+       /// <summary>
+       /// 
+       /// </summary>
+       GeneralError=9              
     }
 
     public class TwitterResponse<T>

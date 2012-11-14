@@ -54,14 +54,7 @@ namespace EasyTwitter
             this.AdditionalParameters.Add("status", status);
             TwitterResponse<string> twitterResponse = this.BeginRequest(HTTPVerb.POST);
 
-            if (twitterResponse.Status == TwitterStatus.Success)
-            {
-                return twitterResponse.Status;
-            }
-            else
-            {
-                return TwitterStatus.GeneralError;
-            }
+            return twitterResponse.Status;
         }
     }
 }

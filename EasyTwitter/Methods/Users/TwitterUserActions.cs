@@ -136,7 +136,7 @@ namespace EasyTwitter
             else
                 return new TwitterResponse<List<TwitterUser>>
                 {
-                    Status = TwitterStatus.GeneralError,
+                    Status = twitterResponse.Status,
                     ObjectResponse = null
                 };
         }
@@ -173,7 +173,7 @@ namespace EasyTwitter
             else
                 return new TwitterResponse<TwitterUser>()
                 {
-                    Status = TwitterStatus.GeneralError,
+                    Status = twitterResponse.Status,
                     ObjectResponse = null
                 };
         }

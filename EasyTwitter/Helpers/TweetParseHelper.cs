@@ -67,7 +67,7 @@ namespace EasyTwitter.Helpers
                 return new TwitterResponse<List<Tweet>>
                 {
                     ObjectResponse = null,
-                    Status = TwitterStatus.GeneralError
+                    Status = twitterResponse.Status
                 };
             }
         }

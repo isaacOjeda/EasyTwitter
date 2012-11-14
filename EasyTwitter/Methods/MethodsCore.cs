@@ -104,9 +104,33 @@ namespace EasyTwitter.Core
             }
             catch (WebException wex)
             {
+                TwitterStatus status = TwitterStatus.GeneralError; ;
+                if (wex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    switch(((HttpWebResponse)wex.Response).StatusCode)
+                    {
+                        case HttpStatusCode.BadRequest:
+                            status = TwitterStatus.BadRequest;
+                            break;
+                            
+                        case HttpStatusCode.Unauthorized:
+                            status = TwitterStatus.Unauthorized;
+                            break;
+
+                        case HttpStatusCode.NotFound:
+                            status = TwitterStatus.FileNotFound;
+                            break;
+                        case HttpStatusCode.NotAcceptable:
+                            status = TwitterStatus.NotAcceptable;
+                            break;
+                        default:
+                            status = TwitterStatus.GeneralError;
+                            break;
+                    }
+                }
                 return new TwitterResponse<string>()
                 {
-                    Status = TwitterStatus.NotFound,
+                    Status = status,
                     ObjectResponse = String.Empty
                 };
             }
