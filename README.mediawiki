@@ -1,6 +1,7 @@
 <h1>Easy Twitter</h1>
 <p>EasyTwitter it's a simple wrapper library for the new Web API of Twitter v1.1</p>
-<p>&nbsp;EasyTwitter is under &nbsp;development. At this time it has basic operations like OAuth authentication and simple tasks with tweets and user info.</p>
+<p>EasyTwitter is under development, at this time it has basic operations like OAuth authentication and simple tasks with tweets and user info.</p>
+<p><b>Update:</b> Now  EasyTwitter has more functions like read authenticated user's timeline, see favorites, search users, and more. Wait for a complete documentation of how to use EasyTwitter.</p>
 <h2>EasyTwitter configuration file</h2>
 <p>With EasyTwitter you have an easy way to configure your application to use your twitter app</p>
 <p><img src="https://pbs.twimg.com/media/A5WMVYBCUAET7H0.png:large" alt="" width="747" height="375" /><br /> <br /> <br /></p>
