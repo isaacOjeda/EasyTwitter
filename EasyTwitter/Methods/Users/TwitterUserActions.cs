@@ -123,7 +123,8 @@ namespace EasyTwitter
                             ScreenName = (string)user["screen_name"],
                             FavouritesCount = (int)user["favourites_count"],
                             FollowersCount = (int)user["followers_count"],
-                            ProfileImageUrl = (string)user["profile_image_url"]                            
+                            ProfileImageUrl = (string)user["profile_image_url"],
+                            Verified = (bool)user["verified"]
                         }
                     ).ToList<TwitterUser>();
 
@@ -161,7 +162,8 @@ namespace EasyTwitter
                     ScreenName = (string)json["screen_name"],
                     FavouritesCount = (int)json["favourites_count"],
                     FollowersCount = (int)json["followers_count"],
-                    ProfileImageUrl = (string)json["profile_image_url"]
+                    ProfileImageUrl = (string)json["profile_image_url"],
+                    Verified=(bool)json["verified"]
                 };
 
                 return new TwitterResponse<TwitterUser>()

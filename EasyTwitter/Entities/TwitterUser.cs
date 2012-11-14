@@ -39,6 +39,9 @@ namespace EasyTwitter.Entities
         /// 
         /// </summary>
         public string ScreenName {get;set;}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Verified { get; set; }
     }
 }
