@@ -56,5 +56,23 @@ namespace EasyTwitter
 
             return twitterResponse.Status;
         }
+        /// <summary>
+        /// Search relevant tweets
+        /// Documentation: https://dev.twitter.com/docs/api/1.1/get/search/tweets
+        /// </summary>
+        /// <param name="q">A UTF-8, URL-encoded search query of 1,000 characters maximum, including operators. 
+        /// Queries may additionally be limited by complexity.</param>
+        /// <returns>Tweets</returns>
+        public TwitterResponse<List<Tweet>> SearchTweets(string q)
+        {
+            this.BaseUri = "https://api.twitter.com/1.1/search/";
+            this.Method = "tweets.json";
+
+            this.AdditionalParameters.Add("q", q);
+
+            TwitterResponse<string> twitterResponse = this.BeginRequest(HTTPVerb.GET);
+
+            return Helpers.TweetParseHelper.ParseTweetsCollection2(twitterResponse);
+        }
     }
 }

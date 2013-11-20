@@ -99,6 +99,13 @@ namespace Twitter4Later
             //TwitterResponse<List<TwitterUser>> usersss= twitterObject.Search(txtUser.Text, 1,10);
 
             #endregion
+
+            #region Search Tweets
+            TweetActions tweetActions = new TweetActions(tokens);
+
+            var response = tweetActions.SearchTweets("_ballonatic");
+
+            #endregion
         }
 
         protected void Button3_Click(object sender, EventArgs e)
